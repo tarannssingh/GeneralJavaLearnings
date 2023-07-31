@@ -16,7 +16,7 @@ public class MyPanel extends JPanel{
 
     public MyPanel()
     {
-        // We are greating an image icon, and then the getting the image from that
+        // We are creating an image icon, and then the getting the image from that
         // this allows us to get an image
         image = new ImageIcon("purple.png").getImage();
         this.setPreferredSize(new Dimension(500,500));
