@@ -66,9 +66,10 @@ JButton button = new JButton("Fire");
     {
         if (e.getSource() == button)
         {
+            
             projectile = new Projectile(SPEED, ANGLE);
             fired = true;
-            System.out.println("" + projectile.getY());
+            System.out.println("FIRED" + projectile.getY());
             timer = new Timer(TIME, this); // 10 milisecond intervals
             timer.setRepeats(true);
             timer.start(); 
@@ -77,7 +78,7 @@ JButton button = new JButton("Fire");
         }
 
 // fired && (projectile.getY() - 2 * PROJ_DIAMETER <= this.getHeight())
-        if (fired) // If the projectile is fired and doesn't touch the ground
+        if (fired && (projectile.getY() - 2 * PROJ_DIAMETER <= this.getHeight())) // If the projectile is fired and doesn't touch the ground
         {
             projectile.move();
         }

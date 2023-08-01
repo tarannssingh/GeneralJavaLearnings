@@ -32,7 +32,7 @@ public class MyFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Project Projectile");
         this.setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
-        this.setResizable(false);
+        this.setResizable(true);
         this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
 

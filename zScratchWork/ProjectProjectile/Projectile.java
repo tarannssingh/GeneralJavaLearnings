@@ -41,8 +41,8 @@ public class Projectile extends Rectangle{
     public double myDegrees;
     public double myTheta;
     // Broken down to componenets
-    public int myVx;
-    public int myVy;
+    public double myVx;
+    public double myVy;
     // Acceleratios 
     public double myAx;
     public double myAy;
@@ -57,7 +57,7 @@ public class Projectile extends Rectangle{
         myDegrees = degrees;
         myTheta = Math.toRadians(degrees);
         myAx = 0;
-        myAy = (.098) * PanelProj.TIME; // This must be postive as down is positve
+        myAy = (.0198) * PanelProj.TIME; // This must be postive as down is positve
         myVx = (int) (myIntSpeed * Math.cos(myTheta));
         myVy = -(int) (myIntSpeed * Math.sin(myTheta));
 
