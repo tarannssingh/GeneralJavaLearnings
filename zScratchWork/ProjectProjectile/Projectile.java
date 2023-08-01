@@ -1,3 +1,7 @@
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.lang.Math;
 
@@ -30,8 +34,8 @@ public class Projectile extends Rectangle{
 
     // These are the x and y coordinates, in future iterations, we will make it equal to the mouse let go point of the sling shot mech.
     // Pos
-    int myX = 0;
-    int myY = PanelProj.PROJ_HEIGHT - 2 * PanelProj.PROJ_DIAMETER;;
+    static int myX = 0;
+    static int myY = PanelProj.PROJ_HEIGHT - 2 * PanelProj.PROJ_DIAMETER;
     // Starting Speeds
     public int myIntSpeed;
     public double myDegrees;
@@ -47,73 +51,84 @@ public class Projectile extends Rectangle{
 
     Projectile( int s, double degrees)
     {
-        x = myX;
-        y = myY;
+        super(myX, myY, PanelProj.PROJ_DIAMETER, PanelProj.PROJ_DIAMETER);
+
         myIntSpeed = s;
         myDegrees = degrees;
         myTheta = Math.toRadians(degrees);
         myAx = 0;
-        myAy = (9.8) / 1000 * PanelProj.TIME; // This must be postive as down is positve
+        myAy = (.098) * PanelProj.TIME; // This must be postive as down is positve
         myVx = (int) (myIntSpeed * Math.cos(myTheta));
-        myVy = - (int) (myIntSpeed * Math.sin(myTheta));
+        myVy = -(int) (myIntSpeed * Math.sin(myTheta));
 
     }
-
-    public double getX()
-    {
-        return x;
-    }
-    public double getY()
-    {
-        return y;
-    }
-    public void setX(double myX)
-    {
-        x = (int)myX;
-    }
-    public void setY(double myY)
-    {
-        y = (int)myY;
-    }
-
-    public int getVx()
-    {
-        return myVx;
-    }
-    public int getVy()
-    {
-        return myVy;
-    }
-    public void setVx(double x)
-    {
-        myVx = (int) x;
-    }
-    public void setVy(double y)
-    {
-        myVy = (int)y;
-    }
-
-    public double getAx()
-    {
-        return myAx;
-    }
-    public double getAy()
-    {
-        return myAy;
-    }
-    public void setAx(double x)
-    {
-        myAx = x;
-    }
-    public void setAy(double y)
-    {
-        myAy = y;
-    }
-
     
+    public void move()
+    {
+        x += myVx;
+        myVx += myAx;
+        y += myVy;
+        myVy += myAy;
+    }
+
+    public void paint (Graphics g)
+    {
+        Graphics2D g2D = (Graphics2D)(g);
+        g2D.setStroke(new BasicStroke(9));
+        g2D.setColor(Color.red);
+        g2D.fillOval(x, y, PanelProj.PROJ_DIAMETER, PanelProj.PROJ_DIAMETER);
+    }
 
 
-    
+    // public double getX()
+    // {
+    //     return x;
+    // }
+    // public double getY()
+    // {
+    //     return y;
+    // }
+    // public void setX(double myX)
+    // {
+    //     x = (int)myX;
+    // }
+    // public void setY(double myY)
+    // {
+    //     y = (int)myY;
+    // }
 
+    // public int getVx()
+    // {
+    //     return myVx;
+    // }
+    // public int getVy()
+    // {
+    //     return myVy;
+    // }
+    // public void setVx(double x)
+    // {
+    //     myVx = (int) x;
+    // }
+    // public void setVy(double y)
+    // {
+    //     myVy = (int)y;
+    // }
+
+    // public double getAx()
+    // {
+    //     return myAx;
+    // }
+    // public double getAy()
+    // {
+    //     return myAy;
+    // }
+    // public void setAx(double x)
+    // {
+    //     myAx = x;
+    // }
+    // public void setAy(double y)
+    // {
+    //     myAy = y;
+    // }
 
 }

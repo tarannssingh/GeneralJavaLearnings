@@ -41,10 +41,8 @@ JButton button = new JButton("Fire");
 
         //Every time the timer is called, we perform a redraw
         timer = new Timer(TIME, this); // 10 milisecond intervals
-        // timer.setRepeats(true);
+        timer.setRepeats(true);
         timer.start(); 
-        
-
    
     }
 
@@ -56,13 +54,10 @@ JButton button = new JButton("Fire");
         Graphics2D g2D = (Graphics2D) (g);
         if (fired)
         {
-            g2D.setStroke(new BasicStroke(9));
-            g2D.setPaint(Color.red);
-            g2D.fillOval( (int) projectile.getX(), (int) projectile.getY(), PROJ_DIAMETER, PROJ_DIAMETER);
+            projectile.paint(g2D);
         }
 
     }
-
 
 
     @Override
@@ -71,16 +66,40 @@ JButton button = new JButton("Fire");
     {
         if (e.getSource() == button)
         {
-            this.fire();
+            projectile = new Projectile(SPEED, ANGLE);
             fired = true;
-            System.out.println("" + projectile.getX());
+            System.out.println("" + projectile.getY());
+            timer = new Timer(TIME, this); // 10 milisecond intervals
+            timer.setRepeats(true);
+            timer.start(); 
+            repaint();
 
         }
 
 // fired && (projectile.getY() - 2 * PROJ_DIAMETER <= this.getHeight())
-        while (fired) // If the projectile is fired and doesn't touch the ground
+        if (fired) // If the projectile is fired and doesn't touch the ground
         {
-            // Here we will do all of the physics that will ultimently change the x and y of the projectile             
+            projectile.move();
+        }
+        // System.out.println("" + projectile.getY());
+        // System.out.println("" + 2 * PROJ_DIAMETER);
+        // System.out.println("" + this.getHeight());
+        // System.out.println("" + (projectile.getY() - 2 * PROJ_DIAMETER ));
+        System.out.println("" + projectile.getX() + " , " + projectile.getY());
+
+        repaint();
+    }
+
+}
+
+
+
+
+
+
+
+/*
+ * // Here we will do all of the physics that will ultimently change the x and y of the projectile             
                                 // if (projectile.getY() > this.getHeight())
               System.out.println("" + projectile.getY());
             projectile.setX(
@@ -103,19 +122,4 @@ JButton button = new JButton("Fire");
                 // Handle any exceptions that might occur
             }
 
-        }
-        System.out.println("" + projectile.getY());
-        System.out.println("" + 2 * PROJ_DIAMETER);
-        System.out.println("" + this.getHeight());
-        System.out.println("" + (projectile.getY() - 2 * PROJ_DIAMETER ));
-        System.out.println("" + projectile.getX() + " , " + projectile.getY());
-
-        repaint();
-    }
-
-    public void fire()
-    {
-        projectile = new Projectile(SPEED, ANGLE);
-    }
-
-}
+ */
